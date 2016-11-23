@@ -23,9 +23,10 @@ chmod +x /etc/my_init.d/firstrun.sh && \
 
 # update apt and install dependencies
 mv /root/excludes /etc/dpkg/dpkg.cfg.d/excludes && \
+add-apt-repository ppa:nathan-renniewaldock/qdirstat && \
 apt-get update && \
 apt-get install -y --force-yes --no-install-recommends wget openjdk-7-jre supervisor sudo nano net-tools lxde x11vnc xvfb gtk2-engines-murrine ttf-ubuntu-font-family firefox lxterminal && \
-apt-get install -y xrdp libreoffice && \
+apt-get install -y xrdp gnome-terminal qdirstat && \
 
 
 # create ubuntu user
