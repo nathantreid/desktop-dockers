@@ -31,7 +31,6 @@ apt-get install -y xrdp gnome-terminal qdirstat && \
 
 # create ubuntu user
 useradd --create-home --shell /bin/bash --user-group --groups adm,sudo ubuntu && \
-echo "ubuntu:$PASSWD" | chpasswd && \
 
 # set user ubuntu to same uid and guid as nobody:users in unraid
 usermod -u 99 ubuntu && \

@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "setting password"
+echo "ubuntu:$PASSWD" | chpasswd
 
 if [[ $(cat /etc/timezone) != $TZ ]] ; then
   echo "$TZ" > /etc/timezone
