@@ -1,32 +1,22 @@
 #!/bin/bash
 echo "setting password"
-echo "ubuntu:$PASSWD" | chpasswd
+echo "root:$PASSWD" | chpasswd
 
 if [[ $(cat /etc/timezone) != $TZ ]] ; then
   echo "$TZ" > /etc/timezone
   dpkg-reconfigure -f noninteractive tzdata
 fi
 
-mkdir -p /home/ubuntu/unraid
-mkdir -p /home/ubuntu/.config/libreoffice/4/user
-mkdir -p /home/ubuntu/.config/pcmanfm/LXDE
-if [ -d "/home/ubuntu/unraid/wallpapers" ]; then
+mkdir -p /home/root/unraid
+mkdir -p /home/root/.config/pcmanfm/LXDE
+if [ -d "/home/root/unraid/wallpapers" ]; then
 echo "using existing wallpapers etc..."
 else
-mkdir -p /home/ubuntu/unraid/wallpapers
-cp /root/wallpapers/* /home/ubuntu/unraid/wallpapers/
-mv  /root/desktop-items-0.conf /home/ubuntu/.config/pcmanfm/LXDE/desktop-items-0.conf
-chown ubuntu:users /home/ubuntu/.config/pcmanfm/LXDE/desktop-items-0.conf
-chmod 644 /home/ubuntu/.config/pcmanfm/LXDE/desktop-items-0.conf
-fi
-
-if [ -f "/home/ubuntu/.config/libreoffice/4/user/registrymodifications.xcu" ]; then
-echo "using existing libreoffice settings file"
-else
-cp /root/registrymodifications.xcu /home/ubuntu/.config/libreoffice/4/user/
-chown -R ubuntu:users /home/ubuntu/
-chmod -R 755 /home/ubuntu/.config/libreoffice
-chmod 600 /home/ubuntu/.config/libreoffice/4/user/registrymodifications.xcu
+mkdir -p /home/root/unraid/wallpapers
+cp /root/wallpapers/* /home/root/unraid/wallpapers/
+mv  /root/desktop-items-0.conf /home/root/.config/pcmanfm/LXDE/desktop-items-0.conf
+chown ubuntu:users /home/root/.config/pcmanfm/LXDE/desktop-items-0.conf
+chmod 644 /home/root/.config/pcmanfm/LXDE/desktop-items-0.conf
 fi
 
 mkdir  /var/run/sshd
